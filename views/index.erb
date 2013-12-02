@@ -1,0 +1,16 @@
+<html>
+<body>
+<h1>MCollection via Dynflow</h1>
+
+<form action="/trigger" method="post">
+<input type="input" name="param"/>
+<button type="submit" name="action" value="install">Install</button>
+<button type="submit" name="action" value="uninstall">Uninstall</button>
+<button type="submit" name="action" value="restart">Restart</button>
+<button type="submit" name="action" value="install_and_restart">Install and restart</button>
+</form>
+<% if @uuid %>
+  Task scheduled: you can see <a href="/dynflow/<%= h(@uuid) %>">details here</a>
+<% end %>
+</body>
+</html>
