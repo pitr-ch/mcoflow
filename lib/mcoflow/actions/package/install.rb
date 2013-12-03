@@ -4,6 +4,7 @@ module Mcoflow
       class Install < Mcoflow::Action
 
         input_format do
+          param :hostname, String
           param :package, String
         end
 

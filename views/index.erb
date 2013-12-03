@@ -1,9 +1,18 @@
 <html>
+<head>
+<style type="text/css">
+  label {
+      width: 10em;
+      display: inline-block;
+  }
+</style>
+</head>
 <body>
 <h1>MCollection via Dynflow</h1>
 
 <form action="/trigger" method="post">
-<input type="input" name="param"/>
+<p><label>Hostname:</label> <input type="input" name="hostname"/></p>
+<p><label>Param: </label> <input type="input" name="param"/></p>
 <button type="submit" name="action" value="install">Install</button>
 <button type="submit" name="action" value="uninstall">Uninstall</button>
 <button type="submit" name="action" value="restart">Restart</button>

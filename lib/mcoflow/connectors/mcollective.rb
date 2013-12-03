@@ -40,12 +40,15 @@ module Mcoflow
       end
 
       # Initiate the mcollective action
-      def mco_run(mco_agent, mco_action, mco_args)
+      def mco_run(mco_filters, mco_agent, mco_action, mco_args)
         # RPC client is not thread safe, make sure we connect with only one instance
         # at a time
         @mcollective_mutex.synchronize do
           client = rpcclient(mco_agent.to_s,
                              :options => ::MCollective::Util.default_options)
+          mco_filters.each do |key, value|
+            client.send(key, *Array(value))
+          end
           client.reply_to = REPLY_QUEUE
           request_id = client.send(mco_action, mco_args)
           client.disconnect

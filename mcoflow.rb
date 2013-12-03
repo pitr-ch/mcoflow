@@ -19,22 +19,24 @@ get '/' do
 end
 
 post '/trigger' do
+  hostname = params[:hostname]
+  options = { hostname: hostname }
   task = case params[:action].to_s.downcase
             when "install"
               WORLD.trigger(Mcoflow::Actions::Package::Install,
-                            :package => params[:param])
+                            options.merge(package: params[:param]))
             when "uninstall"
               WORLD.trigger(Mcoflow::Actions::Package::Uninstall,
-                            :package => params[:param])
+                            options.merge(package: params[:param]))
             when "restart"
               WORLD.trigger(Mcoflow::Actions::Service::Restart,
-                            :service => params[:param])
+                            options.merge(service: params[:param]))
             when "install_and_restart"
               packages, services = params[:param].split(';')
               packages = packages.split(',').map(&:strip)
               services = services.split(',').map(&:strip)
               WORLD.trigger(Mcoflow::Actions::InstallAndRestart,
-                            packages, services)
+                            hostname, packages, services)
             else
               raise "unkown action #{params[:action]}"
          end

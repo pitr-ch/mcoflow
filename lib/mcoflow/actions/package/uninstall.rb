@@ -4,6 +4,7 @@ module Mcoflow
       class Uninstall < Mcoflow::Action
 
         input_format do
+          param :hostname, String
           param :package, String
         end
 

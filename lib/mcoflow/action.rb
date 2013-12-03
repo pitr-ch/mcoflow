@@ -15,8 +15,14 @@ module Mcoflow
       raise RuntimeError, "Not implemented"
     end
 
+    def mco_filter
+      raise "input[:hostname] is expected" unless input[:hostname]
+      { identity_filter: input[:hostname] }
+    end
+
     def run
-      self.output[:request_id] = Mcoflow.connector.mco_run(mco_agent,
+      self.output[:request_id] = Mcoflow.connector.mco_run(mco_filter,
+                                                           mco_agent,
                                                            mco_action,
                                                            mco_args)
       suspend
