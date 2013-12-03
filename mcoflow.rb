@@ -5,7 +5,7 @@ require 'pry'
 $:.unshift(File.expand_path('../lib', __FILE__))
 require 'mcoflow'
 
-Mcoflow.initialize_mcollective(File.expand_path('~/.mcollective', __FILE__))
+Mcoflow.initialize_mcollective(File.expand_path('~/.mcollective'))
 
 dynflow_config = {}
 dynflow_config[:persistence_adapter] =  Dynflow::PersistenceAdapters::Sequel.new('sqlite://db/mcoflow.sqlite')
