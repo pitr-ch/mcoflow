@@ -1,6 +1,7 @@
 GIT
   remote: git@github.com:iNecas/dynflow.git
-  revision: 74462afb27201285e61dc1b4179d1d411e27e53b
+  revision: ff7800f67babfb67a325a32b2c695965bc2ab52c
+  branch: master-inecas
   specs:
     dynflow (0.1.0)
       activesupport
@@ -41,7 +42,7 @@ GEM
     rack-protection (1.5.1)
       rack
     rake (10.1.0)
-    sequel (4.4.0)
+    sequel (4.5.0)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)

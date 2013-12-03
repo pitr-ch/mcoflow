@@ -44,7 +44,8 @@ module Mcoflow
         # RPC client is not thread safe, make sure we connect with only one instance
         # at a time
         @mcollective_mutex.synchronize do
-          client = rpcclient(mco_agent.to_s)
+          client = rpcclient(mco_agent.to_s,
+                             :options => ::MCollective::Util.default_options)
           client.reply_to = REPLY_QUEUE
           request_id = client.send(mco_action, mco_args)
           client.disconnect
@@ -70,7 +71,6 @@ module Mcoflow
       def stomp_connection
         return @connection if @connection
         stomp_config = load_stomp_config
-        heartbeat_interval = "30000"
         config = {:hosts => [{ :login => stomp_config["user"],
                                :passcode => stomp_config["password"],
                                :host => stomp_config["host"],
