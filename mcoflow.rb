@@ -20,6 +20,7 @@ end
 
 post '/trigger' do
   hostname = params[:hostname]
+  raise "hostname can't be empty" if hostname.nil? || hostname.empty?
   options = { hostname: hostname }
   task = case params[:action].to_s.downcase
             when "install"
@@ -33,8 +34,8 @@ post '/trigger' do
                             options.merge(service: params[:param]))
             when "install_and_restart"
               packages, services = params[:param].split(';')
-              packages = packages.split(',').map(&:strip)
-              services = services.split(',').map(&:strip)
+              packages = packages.to_s.split(',').map(&:strip)
+              services = services.to_s.split(',').map(&:strip)
               WORLD.trigger(Mcoflow::Actions::InstallAndRestart,
                             hostname, packages, services)
             else
