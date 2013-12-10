@@ -5,6 +5,8 @@ Proof of concept of using
 [Dynflow](https://www.github.com/iNecas/dynflow) as backend for
 remote commands via MCollective.
 
+You can see it in action in [this screencast](https://www.youtube.com/watch?v=UyO4R7VUFZ4)
+
 Installation
 ------------
 
